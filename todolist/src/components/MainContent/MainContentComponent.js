@@ -20,12 +20,28 @@ export class MainContentComponent extends Component {
         super()
         this.state = {todos : todosData}
         this.handleClick = this.handleClick.bind(this)
+        this.thrash = this.thrash.bind(this)
+    }
+
+
+    thrash(id){
+        let updatedData = this.state.todos;
+        updatedData.filter(
+            n => {
+                if(n.id == id){
+                    return n
+            }
+        }
+        )
+
+        this.setState( prevState => prevState = {
+            todos : updatedData
+        });
     }
 
     handleClick(id){
-        console.log(this.state.todos);
         let updatedData = this.state.todos;
-        /*
+        
         updatedData.map(n  => {
             if(n.id == id){
                 n.completed = !n.completed
@@ -38,13 +54,11 @@ export class MainContentComponent extends Component {
         this.setState( prevState => prevState = {
             todos : updatedData
         });
-        */
-        console.log("Clicked ",id)
-        console.log(this.state.todos);
+        
     }
 
   render() {
-    var todoDataComps = this.state.todos.map( n => <TodoComponent key={n.id} text={n.text} id={n.id} completed={n.completed} handleClick={this.handleClick} />);
+    var todoDataComps = this.state.todos.map( n => <TodoComponent key={n.id} text={n.text} id={n.id} thrash={this.thrash} completed={n.completed} handleClick={this.handleClick} />);
     return (
       <div>
         <HeaderComponent />

@@ -19,7 +19,7 @@ constructor(props){
               checked={this.props.completed}
               onChange={() => this.props.handleClick(this.props.id)}
             />
-            <Button>Thrash</Button>
+            <Button onClick={() => this.props.thrash(this.props.id)}>Thrash</Button>
           </Form>
         </Row>
       </div>
